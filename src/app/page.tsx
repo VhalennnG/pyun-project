@@ -1,13 +1,8 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
+"use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
-  Download,
-  Monitor,
   Shield,
   Zap,
   Sliders,
@@ -17,118 +12,10 @@ import {
   Moon,
   Globe,
   Terminal,
+  Monitor,
 } from "lucide-react";
-
-const dict = {
-  en: {
-    heroTag: "Pyun Overlay System",
-    heroTitle1: "Level Up Your",
-    heroTitle2: "Stream Overlay",
-    heroDesc:
-      '"Instant & lightweight Versus Progress Bar for Streamers. Free, standalone, and 100% local desktop software for real-time interactions."',
-    downloadWin: "Windows",
-    downloadMac: "Mac",
-    downloadLin: "Linux",
-    versionInfo: "v2.0.0 | Free & Open Source",
-    howItWorksSub: "Instant Workflow",
-    howItWorksTitle: "Simple Setup",
-    howItWorksDesc:
-      "Three easy steps to bring your tournament visuals to a professional level.",
-    step1Tag: "Phase 01",
-    step1Title: "Setup Score & Visuals",
-    step1Desc:
-      "Choose Neon Stack color scheme, customize team logos without cropping fears.",
-    step2Tag: "Phase 02",
-    step2Title: "Connect to OBS",
-    step2Desc:
-      "Add a Window Capture source in OBS Studio, then check the Allow Transparency option.",
-    step3Tag: "Phase 03",
-    step3Title: "Live & Instant Control",
-    step3Desc:
-      "Change scores using manual control buttons or utilize Global Hotkeys while focusing on your game.",
-    featuresSub: "Core Capabilities",
-    featuresTitle: "Designed for Performance",
-    featuresDesc:
-      "Pyun's flagship features ensure your live stream runs smoothly without sacrificing computer resources.",
-    feat1Title: "100% Standalone & Lightweight",
-    feat1Desc:
-      "Runs entirely on a local computer without databases or external server connections. Zero delay and no CPU overhead during live streaming.",
-    feat2Title: "OBS Transparent Overlay",
-    feat2Desc:
-      "Supports full transparent window integration (Alpha Transparency) that blends perfectly over gameplay.",
-    feat3Title: "Extensive Customization",
-    feat3Desc:
-      "Freedom to change bar colors, switch layout modes (Double Progress Bar), and precise team logo settings.",
-    feat4Title: "Anti-Capture & Global Hotkeys",
-    feat4Desc:
-      "Keep the control panel secret from viewers thanks to Anti-Capture, and change scores quickly via keyboard shortcuts.",
-    previewSub: "Performance Preview",
-    previewTitle1: "Ultra-Smooth",
-    previewTitle2: "Animation Transitions.",
-    previewOverlay: "[Animation Preview (/assets/pyun-preview.gif)]",
-    previewOpt: "Optimized for 60 FPS",
-    footerMadeWith: "Made with",
-    footerBy: "by Vhalen for the Streamer Community.",
-    footerRights: "Pyun Overlay System. All rights reserved.",
-    viewGithub: "View on GitHub",
-    openSource: "Open Source",
-  },
-  id: {
-    heroTag: "Sistem Overlay Pyun",
-    heroTitle1: "Tingkatkan Level",
-    heroTitle2: "Overlay Stream Anda",
-    heroDesc:
-      '"Versus Progress Bar instan & ringan untuk Streamer. Software desktop gratis, standalone, dan 100% lokal untuk interaksi real-time."',
-    downloadWin: "Windows",
-    downloadMac: "Mac",
-    downloadLin: "Linux",
-    versionInfo: "v2.0.0 | Gratis & Open Source",
-    howItWorksSub: "Alur Kerja Instan",
-    howItWorksTitle: "Setup Sederhana",
-    howItWorksDesc:
-      "Tiga langkah mudah untuk membawa visual turnamen Anda ke level profesional.",
-    step1Tag: "Fase 01",
-    step1Title: "Atur Skor & Visual",
-    step1Desc:
-      "Pilih skema warna Neon Stack, sesuaikan logo tim tanpa takut terpotong (anti-crop).",
-    step2Tag: "Fase 02",
-    step2Title: "Hubungkan ke OBS",
-    step2Desc:
-      "Tambahkan source Window Capture di OBS Studio, lalu centang opsi Allow Transparency.",
-    step3Tag: "Fase 03",
-    step3Title: "Live & Kontrol Instan",
-    step3Desc:
-      "Ubah skor menggunakan tombol kontrol manual atau manfaatkan Global Hotkeys saat fokus bermain game.",
-    featuresSub: "Kemampuan Utama",
-    featuresTitle: "Dirancang untuk Performa",
-    featuresDesc:
-      "Fitur unggulan Pyun memastikan live stream Anda berjalan mulus tanpa mengorbankan resource komputer.",
-    feat1Title: "100% Standalone & Ringan",
-    feat1Desc:
-      "Berjalan sepenuhnya di komputer lokal tanpa database atau koneksi server eksternal. Nol delay dan tidak membebani kinerja CPU saat live streaming.",
-    feat2Title: "OBS Transparent Overlay",
-    feat2Desc:
-      "Mendukung integrasi jendela transparan penuh (Alpha Transparency) yang langsung menyatu dengan sempurna di atas gameplay.",
-    feat3Title: "Kustomisasi Ekstensif",
-    feat3Desc:
-      "Kebebasan mengubah warna bar, beralih mode layout (Double Progress Bar), dan pengaturan logo tim yang presisi tanpa takut logo terpotong.",
-    feat4Title: "Anti-Capture & Global Hotkeys",
-    feat4Desc:
-      "Jaga rahasia control panel dari penonton berkat Anti-Capture, dan ubah skor dengan cepat lewat shortcut keyboard meski aplikasi di background.",
-    previewSub: "Pratinjau Performa",
-    previewTitle1: "Transisi Animasi",
-    previewTitle2: "Ultra-Mulus.",
-    previewOverlay: "[Animasi Preview (/assets/pyun-preview.gif)]",
-    previewOpt: "Dioptimalkan untuk 60 FPS",
-    footerMadeWith: "Dibuat dengan",
-    footerBy: "oleh Vhalen untuk Komunitas Streamer.",
-    footerRights: "Pyun Overlay System. Hak Cipta Dilindungi.",
-    viewGithub: "Lihat di GitHub",
-    openSource: "Sumber Terbuka",
-  },
-};
-
-type Lang = "en" | "id";
+import { FaWindows, FaApple, FaLinux } from "react-icons/fa";
+import { dict, type Lang } from "@/lib/dict";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -145,7 +32,7 @@ const staggerContainer = {
   },
 };
 
-export default function App() {
+export default function Home() {
   const [lang, setLang] = useState<Lang>("id");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
@@ -183,31 +70,69 @@ export default function App() {
       <div className="fixed inset-0 z-[-1] bg-radial-fade pointer-events-none" />
 
       {/* Top Navigation Toggles */}
-      <div className="relative z-50 flex justify-end p-6 gap-3 max-w-7xl mx-auto w-full">
-        <button
+      <div className="relative z-50 flex justify-end p-6 gap-4 max-w-7xl mx-auto w-full">
+        {/* Theme Switcher (Sliding) */}
+        <div
           onClick={toggleTheme}
-          className="p-3 rounded-full glass-card hover:bg-[var(--color-bg-secondary)] transition-colors hover-neon-glow"
-          aria-label="Toggle Theme"
+          className="relative h-10 w-20 rounded-full glass-card cursor-pointer p-1 flex items-center hover:shadow-[0_0_20px_rgba(var(--color-accent-primary-rgb),0.2)] transition-all border border-[var(--color-border)] shadow-inner"
         >
-          {theme === "dark" ? (
-            <Sun className="w-5 h-5" />
-          ) : (
-            <Moon className="w-5 h-5" />
-          )}
-        </button>
+          {/* Background Icons (Static/Dim) */}
+          <div className="flex justify-between w-full px-2.5 z-0 opacity-30">
+            <Sun className="w-3.5 h-3.5 text-[var(--color-text-primary)]" />
+            <Moon className="w-3.5 h-3.5 text-[var(--color-text-primary)]" />
+          </div>
+
+          {/* Sliding Thumb with Active Icon */}
+          <motion.div
+            className="absolute h-8 w-8 bg-gradient-to-tr from-accent-primary to-accent-secondary rounded-full shadow-[0_0_15px_rgba(var(--color-accent-primary-rgb),0.4)] flex items-center justify-center z-10"
+            animate={{
+              x: theme === "light" ? 0 : 40,
+            }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={theme}
+                initial={{ scale: 0, rotate: -90, opacity: 0 }}
+                animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                exit={{ scale: 0, rotate: 90, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                {theme === "light" ? (
+                  <Sun className="w-4 h-4 text-white" />
+                ) : (
+                  <Moon className="w-4 h-4 text-white" />
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </div>
+
+        {/* Language Toggle (Smooth Cross-fade) */}
         <button
           onClick={toggleLang}
-          className="px-4 py-2 rounded-full glass-card hover:bg-[var(--color-bg-secondary)] transition-colors hover-neon-glow flex items-center gap-2 font-semibold text-sm"
+          className="h-10 px-4 rounded-full glass-card hover:bg-[var(--color-bg-secondary)] transition-colors hover-neon-glow flex items-center gap-2 font-bold text-xs uppercase tracking-widest min-w-[80px] justify-center"
           aria-label="Toggle Language"
         >
-          <Globe className="w-5 h-5" />
-          {lang === "en" ? "ID" : "EN"}
+          <Globe className="w-4 h-4 text-accent-primary" />
+          <div className="relative w-6 h-4 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={lang}
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -10, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                {lang === "en" ? "ID" : "EN"}
+              </motion.span>
+            </AnimatePresence>
+          </div>
         </button>
       </div>
 
-      {/* 
-        A. HERO SECTION 
-      */}
+      {/* HERO SECTION */}
       <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-28 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-32 w-96 h-96 bg-accent-primary/20 rounded-full blur-[100px] pointer-events-none" />
 
@@ -249,10 +174,10 @@ export default function App() {
                     "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_WIN",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-text-primary)] text-[var(--color-bg-primary)] font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[var(--color-text-primary)]/20 overflow-hidden uppercase tracking-tight text-sm"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-text-primary)] text-[var(--color-bg-primary)] font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[var(--color-text-primary)]/20 overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                <Monitor className="w-5 h-5 relative z-10" />
+                <FaWindows className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">{t.downloadWin}</span>
               </button>
               <button
@@ -262,24 +187,10 @@ export default function App() {
                     "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_MAC",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden uppercase tracking-tight text-sm"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="relative z-10"
-                >
-                  <path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 1.44C9.54 6.44 8.04 5 6 5a5.2 5.2 0 0 0-5.24 5.38c0 4.22 3 12.22 6 12.22 1.25 0 2.5-1.06 4-1.06Z" />
-                  <path d="M10 2c1 .5 2 2 2 3.5-1.5 0-3-1.5-3-3.5 1 0 1 0 1 0Z" />
-                </svg>
+                <FaApple className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">{t.downloadMac}</span>
               </button>
               <button
@@ -289,9 +200,9 @@ export default function App() {
                     "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_LINUX",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-[var(--color-bg-secondary)] font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden uppercase tracking-tight text-sm text-[var(--color-text-primary)] border border-[var(--color-border)]"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-[var(--color-bg-secondary)] font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-[var(--color-text-primary)] border border-[var(--color-border)]"
               >
-                <Terminal className="w-5 h-5 relative z-10" />
+                <FaLinux className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">{t.downloadLin}</span>
               </button>
             </div>
@@ -326,7 +237,7 @@ export default function App() {
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-[2.5rem] opacity-0 group-hover/logo:opacity-100 transition-opacity blur-md" />
             <img
-              src="/assets/logo.png"
+              src="/icons/pyun.jpg"
               alt="Pyun Logo"
               className="w-full h-full object-contain drop-shadow-2xl relative z-10 group-hover/logo:scale-110 transition-transform duration-300"
               onError={(e) => {
@@ -341,9 +252,7 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* 
-        B. HOW IT WORKS
-      */}
+      {/* HOW IT WORKS */}
       <section className="relative py-24 bg-[var(--color-bg-secondary)]/50 border-y border-[var(--color-border)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
@@ -440,9 +349,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 
-        C. FITUR UNGGULAN
-      */}
+      {/* FITUR UNGGULAN */}
       <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 min-w-96 min-h-96 w-1/3 h-1/2 bg-accent-secondary/10 rounded-full blur-[120px] pointer-events-none" />
 
@@ -494,9 +401,7 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* 
-        D. PREVIEW ANIMASI BAR
-      */}
+      {/* PREVIEW ANIMASI BAR */}
       <section className="py-24 bg-[var(--color-bg-secondary)] border-t border-[var(--color-border)] relative">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <motion.div
@@ -542,9 +447,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 
-        E. FOOTER
-      */}
+      {/* FOOTER */}
       <footer className="bg-[var(--color-bg-primary)] pt-16 pb-8 px-6 border-t border-[var(--color-border)]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left space-y-2">
