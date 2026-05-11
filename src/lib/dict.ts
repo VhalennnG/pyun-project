@@ -61,7 +61,7 @@ export const dict = {
     downloadWin: "Windows",
     downloadMac: "Mac",
     downloadLin: "Linux",
-    versionInfo: "v2.0.0 | Gratis & Open Source",
+    versionInfo: "v1.0.0 | Gratis & Open Source",
     howItWorksSub: "Alur Kerja Instan",
     howItWorksTitle: "Setup Sederhana",
     howItWorksDesc:

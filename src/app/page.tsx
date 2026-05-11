@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
@@ -133,7 +133,7 @@ export default function Home() {
       </div>
 
       {/* HERO SECTION */}
-      <section className="relative pt-8 pb-20 lg:pt-16 lg:pb-28 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
+      <section className="relative pt-2 pb-20 lg:pt-4 lg:pb-28 px-6 lg:px-12 max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="absolute top-1/2 left-0 -translate-y-1/2 -ml-32 w-96 h-96 bg-accent-primary/20 rounded-full blur-[100px] pointer-events-none" />
 
         <motion.div
@@ -221,32 +221,39 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="relative rounded-2xl glass-card p-2 aspect-video flex overflow-hidden group border border-[var(--color-border)]">
+          <div className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-[var(--color-border)]" style={{ aspectRatio: "2816 / 1664" }}>
             <div className="absolute -inset-0.5 bg-gradient-to-tr from-accent-secondary/30 to-accent-primary/20 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-500"></div>
-            <img
-              src="/assets/hero-mockup.png"
-              alt="Pyun Control Panel & OBS Dashboard"
-              className="relative rounded-xl w-full h-full object-cover bg-[var(--color-bg-secondary)] object-center border border-[var(--color-border)] opacity-90 group-hover:opacity-100 transition-opacity duration-300"
-            />
+            <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)]">
+              <Image
+                src={theme === "dark" ? "/assets/hero_dark.png" : "/assets/hero_light.png"}
+                alt="Pyun Control Panel & OBS Dashboard"
+                width={2816}
+                height={1664}
+                priority
+                className="w-full h-full object-cover object-center bg-[var(--color-bg-secondary)] opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
           </div>
 
           <motion.div
             animate={{ y: [0, -15, 0], rotate: [0, 2, -2, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 w-32 h-32 md:w-48 md:h-48 z-20 glass-card rounded-[2.5rem] p-4 md:p-6 shadow-2xl backdrop-blur-xl flex items-center justify-center group/logo cursor-pointer"
+            className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 w-32 h-32 md:w-48 md:h-48 z-20 glass-card rounded-[2.5rem] shadow-2xl backdrop-blur-xl flex items-center justify-center group/logo cursor-pointer"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-[2.5rem] opacity-0 group-hover/logo:opacity-100 transition-opacity blur-md" />
-            <img
-              src="/icons/pyun.jpg"
-              alt="Pyun Logo"
-              className="w-full h-full object-contain drop-shadow-2xl relative z-10 group-hover/logo:scale-110 transition-transform duration-300"
-              onError={(e) => {
-                e.currentTarget.style.display = "none";
-                e.currentTarget.nextElementSibling?.classList.remove("hidden");
-              }}
-            />
-            <div className="hidden absolute font-black text-6xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-tr from-accent-primary to-accent-secondary z-0 rotate-12 drop-shadow-xl group-hover/logo:scale-110 transition-transform duration-300">
-              P
+            <div className="relative w-full h-full group-hover/logo:scale-110 transition-transform duration-300">
+              <Image
+                src="/assets/pyun.png"
+                alt="Pyun Logo"
+                fill
+                className="object-contain drop-shadow-2xl z-10"
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  const fallback =
+                    e.currentTarget.parentElement?.nextElementSibling;
+                  if (fallback) fallback.classList.remove("hidden");
+                }}
+              />
             </div>
           </motion.div>
         </motion.div>
@@ -317,19 +324,23 @@ export default function Home() {
                 variants={fadeIn}
                 className="glass-card rounded-2xl p-8 hover:bg-[var(--color-bg-tertiary)]/50 transition-colors group relative overflow-hidden flex flex-col"
               >
-                <div className="w-10 h-10 rounded-lg bg-[var(--color-bg-tertiary)] flex items-center justify-center border border-[var(--color-border)] mb-6 group-hover:border-accent-primary transition-colors">
-                  <img
+                <div className="w-10 h-10 rounded-lg bg-[var(--color-bg-tertiary)] flex items-center justify-center border border-[var(--color-border)] mb-6 group-hover:border-accent-primary transition-colors relative">
+                  <Image
                     src={item.img}
                     alt={`Langkah ${item.step}`}
-                    className="w-5 h-5 opacity-80"
+                    width={20}
+                    height={20}
+                    className="opacity-80"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
-                      e.currentTarget.nextElementSibling?.classList.remove(
-                        "hidden",
-                      );
+                      const fallback =
+                        e.currentTarget.parentElement?.querySelector(
+                          ".fallback-icon",
+                        );
+                      if (fallback) fallback.classList.remove("hidden");
                     }}
                   />
-                  <div className="hidden text-accent-primary">
+                  <div className="fallback-icon hidden text-accent-primary">
                     <item.icon className="w-5 h-5" />
                   </div>
                 </div>
@@ -420,17 +431,23 @@ export default function Home() {
 
             <div className="relative group w-full max-w-4xl mx-auto rounded-3xl overflow-hidden glass-card p-2 border border-[var(--color-border)] shadow-2xl">
               <div className="absolute inset-0 bg-accent-primary/5 group-hover:bg-accent-primary/10 transition duration-500 z-10 pointer-events-none" />
-              <img
-                src="/assets/pyun-preview.gif"
-                alt="Pyun Bar Transition Preview"
-                className="w-full aspect-video object-cover rounded-2xl bg-[var(--color-bg-primary)] opacity-90 group-hover:opacity-100 transition-opacity"
-                onError={(e) => {
-                  e.currentTarget.style.opacity = "0.5";
-                  e.currentTarget.parentElement
-                    ?.querySelector(".fallback-text")
-                    ?.classList.remove("hidden");
-                }}
-              />
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[var(--color-bg-primary)]">
+                <Image
+                  src="/assets/pyun-preview.gif"
+                  alt="Pyun Bar Transition Preview"
+                  fill
+                  unoptimized
+                  className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
+                  onError={(e) => {
+                    e.currentTarget.style.opacity = "0.5";
+                    const fallback =
+                      e.currentTarget.parentElement?.parentElement?.querySelector(
+                        ".fallback-text",
+                      );
+                    if (fallback) fallback.classList.remove("hidden");
+                  }}
+                />
+              </div>
               <div className="fallback-text hidden absolute inset-0 flex items-center justify-center text-[var(--color-text-secondary)] font-medium z-0 text-sm">
                 {t.previewOverlay}
               </div>
