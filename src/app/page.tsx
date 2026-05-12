@@ -32,8 +32,8 @@ const staggerContainer = {
 };
 
 export default function Home() {
-  const [lang, setLang] = useState<Lang>("id");
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [lang, setLang] = useState<Lang>("en");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     if (theme === "dark") {
@@ -265,15 +265,173 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section className="relative py-24 bg-[var(--color-bg-secondary)]/50 border-y border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* DEMO SECTION */}
+      <section className="relative py-28 px-6 lg:px-12 overflow-hidden border-t border-[var(--color-border)]">
+        {/* Ambient blobs */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="text-center mb-16"
+          >
+            <motion.div
+              variants={fadeIn}
+              className="inline-flex items-center gap-2 mb-5"
+            >
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent-primary" />
+              <span className="text-[10px] font-bold text-accent-primary uppercase tracking-[0.25em]">
+                {t.demoSub}
+              </span>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-accent-primary" />
+            </motion.div>
+            <motion.h3
+              variants={fadeIn}
+              className="text-3xl lg:text-5xl font-black tracking-tight mb-4"
+            >
+              {t.demoTitle1}
+              <span className="text-gradient">Pyun</span>
+              {t.demoTitle2}
+            </motion.h3>
+            <motion.p
+              variants={fadeIn}
+              className="text-[var(--color-text-secondary)] text-lg max-w-xl mx-auto font-light leading-relaxed"
+            >
+              {t.demoDesc}
+            </motion.p>
+          </motion.div>
+
+          {/* Video Cards Grid */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
+          >
+            {[
+              {
+                youtubeUrl: "https://www.youtube.com/watch?v=5YE3k5q3g3s",
+                embedId: "5YE3k5q3g3s",
+                label: t.demo1Label,
+                title: t.demo1Title,
+                desc: t.demo1Desc,
+                tag: "01",
+                accent: "from-accent-primary/20 to-accent-secondary/10",
+                glow: "rgba(var(--color-accent-primary-rgb),0.15)",
+              },
+              {
+                youtubeUrl: "https://www.youtube.com/watch?v=8RWpo4W_dGA",
+                embedId: "8RWpo4W_dGA",
+                label: t.demo2Label,
+                title: t.demo2Title,
+                desc: t.demo2Desc,
+                tag: "02",
+                accent: "from-accent-secondary/20 to-accent-primary/10",
+                glow: "rgba(var(--color-accent-secondary-rgb),0.15)",
+              },
+            ].map((video, i) => (
+              <motion.div key={i} variants={fadeIn} className="group relative">
+                {/* Card glow on hover */}
+                <div
+                  className="absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
+                  style={{
+                    background: `radial-gradient(ellipse at center, ${video.glow}, transparent 70%)`,
+                  }}
+                />
+
+                <div className="relative glass-card rounded-3xl overflow-hidden border border-[var(--color-border)] group-hover:border-[var(--color-text-secondary)]/40 transition-colors duration-300">
+                  {/* Top label bar */}
+                  <div
+                    className={`flex items-center justify-between px-5 py-3.5 border-b border-[var(--color-border)] bg-gradient-to-r ${video.accent}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-[10px] text-[var(--color-text-secondary)] font-bold tracking-[0.2em]">
+                        {video.tag}
+                      </span>
+                      <div className="w-px h-3 bg-[var(--color-border)]" />
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-accent-primary">
+                        {video.label}
+                      </span>
+                    </div>
+                    {/* Fake window dots */}
+                    <div className="flex gap-1.5">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-border)]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-border)]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-accent-primary/50" />
+                    </div>
+                  </div>
+
+                  {/* Iframe embed */}
+                  <div
+                    className="relative w-full"
+                    style={{ aspectRatio: "16/9" }}
+                  >
+                    <iframe
+                      src={`https://www.youtube.com/embed/${video.embedId}?rel=0&modestbranding=1&color=white`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+
+                  {/* Bottom info */}
+                  <div className="px-5 py-4 flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-bold text-[var(--color-text-primary)] mb-1 truncate">
+                        {video.title}
+                      </h4>
+                    </div>
+                    <a
+                      href={video.youtubeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[var(--color-border)] hover:border-accent-primary/50 hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] hover:text-accent-primary transition-all duration-200 group/link"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 group-hover/link:scale-110 transition-transform" />
+                      <span className="text-[10px] font-bold uppercase tracking-wider">
+                        YouTube
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+           HOW IT WORKS — diagonal stripe background
+      ══════════════════════════════════════════════ */}
+      <section className="relative py-16 overflow-hidden">
+        {/* Diagonal stripe texture overlay */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(45deg, var(--color-text-primary) 0, var(--color-text-primary) 1px, transparent 0, transparent 50%)",
+            backgroundSize: "18px 18px",
+          }}
+        />
+        {/* Gradient mask on top of stripes */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-primary)] via-transparent to-[var(--color-bg-primary)] pointer-events-none" />
+        {/* Centered glow */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/8 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
             <motion.h2
               variants={fadeIn}
@@ -300,8 +458,11 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 relative"
           >
+            {/* Connector line between cards (desktop only) */}
+            <div className="hidden md:block absolute top-14 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-gradient-to-r from-transparent via-accent-primary/30 to-transparent pointer-events-none" />
+
             {[
               {
                 step: t.step1Tag,
@@ -309,6 +470,7 @@ export default function Home() {
                 desc: t.step1Desc,
                 img: "/assets/step-setup.svg",
                 icon: Sliders,
+                num: "01",
               },
               {
                 step: t.step2Tag,
@@ -316,6 +478,7 @@ export default function Home() {
                 desc: t.step2Desc,
                 img: "/assets/step-obs.svg",
                 icon: Monitor,
+                num: "02",
               },
               {
                 step: t.step3Tag,
@@ -323,41 +486,34 @@ export default function Home() {
                 desc: t.step3Desc,
                 img: "/assets/step-live.svg",
                 icon: Zap,
+                num: "03",
               },
             ].map((item, i) => (
               <motion.div
                 key={i}
                 variants={fadeIn}
-                className="glass-card rounded-2xl p-8 hover:bg-[var(--color-bg-tertiary)]/50 transition-colors group relative overflow-hidden flex flex-col"
+                className="group relative glass-card rounded-2xl p-8 border border-[var(--color-border)] hover:border-accent-primary/40 transition-all duration-300 flex flex-col overflow-hidden"
               >
-                <div className="w-10 h-10 rounded-lg bg-[var(--color-bg-tertiary)] flex items-center justify-center border border-[var(--color-border)] mb-6 group-hover:border-accent-primary transition-colors relative">
-                  <Image
-                    src={item.img}
-                    alt={`Langkah ${item.step}`}
-                    width={20}
-                    height={20}
-                    className="opacity-80"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                      const fallback =
-                        e.currentTarget.parentElement?.querySelector(
-                          ".fallback-icon",
-                        );
-                      if (fallback) fallback.classList.remove("hidden");
-                    }}
-                  />
-                  <div className="fallback-icon hidden text-accent-primary">
-                    <item.icon className="w-5 h-5" />
+                {/* Hover accent shimmer */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Step number badge */}
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/10 border border-accent-primary/30 flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(var(--color-accent-primary-rgb),0.2)] transition-shadow">
+                    <item.icon className="w-5 h-5 text-accent-primary" />
                   </div>
+                  <span className="font-mono text-4xl font-black text-[var(--color-border)] group-hover:text-accent-primary/20 transition-colors leading-none select-none">
+                    {item.num}
+                  </span>
                 </div>
 
-                <div className="text-[10px] font-mono text-[var(--color-text-secondary)] mb-2 tracking-tighter uppercase group-hover:text-accent-primary transition-colors">
+                <div className="font-mono text-[10px] text-accent-primary/70 mb-2 tracking-[0.2em] uppercase">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-[var(--color-text-primary)]">
+                <h3 className="text-xl font-bold mb-3 text-[var(--color-text-primary)] tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mt-auto">
+                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mt-auto font-light">
                   {item.desc}
                 </p>
               </motion.div>
@@ -366,15 +522,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MENU & FITUR */}
-      <section className="py-24 bg-[var(--color-bg-primary)] relative border-b border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* ═══════════════════════════════════════════════
+           MENU & FITUR — deep bg with side-lit glow
+      ══════════════════════════════════════════════ */}
+      <section className="relative py-32 overflow-hidden">
+        {/* Left side glow panel */}
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent-primary/30 to-transparent" />
+        {/* Ambient orbs */}
+        <div className="absolute -left-32 top-1/4 w-80 h-80 bg-accent-primary/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute -right-32 bottom-1/4 w-80 h-80 bg-accent-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+        {/* Subtle noise texture */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.015]"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E\")",
+            backgroundRepeat: "repeat",
+            backgroundSize: "128px",
+          }}
+        />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="text-center mb-20"
+            className="text-center mb-24"
           >
             <motion.h2
               variants={fadeIn}
@@ -396,7 +570,7 @@ export default function Home() {
             </motion.p>
           </motion.div>
 
-          <div className="space-y-32">
+          <div className="space-y-28">
             {[
               {
                 title: t.menuScoreTitle,
@@ -404,6 +578,13 @@ export default function Home() {
                 imgDark: "/assets/score_dark.png",
                 imgLight: "/assets/score_light.png",
                 icon: Zap,
+                tag: "Menu 01",
+                subpoints: [
+                  t.menuScoreSp1,
+                  t.menuScoreSp2,
+                  t.menuScoreSp3,
+                  t.menuScoreSp4,
+                ],
               },
               {
                 title: t.menuTeamsTitle,
@@ -411,6 +592,13 @@ export default function Home() {
                 imgDark: "/assets/team_dark.png",
                 imgLight: "/assets/team_light.png",
                 icon: Shield,
+                tag: "Menu 02",
+                subpoints: [
+                  t.menuTeamsSp1,
+                  t.menuTeamsSp2,
+                  t.menuTeamsSp3,
+                  t.menuTeamsSp4,
+                ],
               },
               {
                 title: t.menuLayoutTitle,
@@ -418,6 +606,13 @@ export default function Home() {
                 imgDark: "/assets/layout_dark.png",
                 imgLight: "/assets/layout_light.png",
                 icon: Monitor,
+                tag: "Menu 03",
+                subpoints: [
+                  t.menuLayoutSp1,
+                  t.menuLayoutSp2,
+                  t.menuLayoutSp3,
+                  t.menuLayoutSp4,
+                ],
               },
               {
                 title: t.menuSettingsTitle,
@@ -425,47 +620,85 @@ export default function Home() {
                 imgDark: "/assets/setting_dark.png",
                 imgLight: "/assets/setting_light.png",
                 icon: Sliders,
+                tag: "Menu 04",
+                subpoints: [
+                  t.menuSettingsSp1,
+                  t.menuSettingsSp2,
+                  t.menuSettingsSp3,
+                  t.menuSettingsSp4,
+                ],
               },
             ].map((menu, i) => (
               <motion.div
                 key={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true, margin: "-80px" }}
                 variants={staggerContainer}
-                className={`flex flex-col gap-12 lg:gap-20 items-center ${
+                className={`flex flex-col gap-10 lg:gap-16 items-center ${
                   i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
                 }`}
               >
+                {/* Image */}
                 <motion.div variants={fadeIn} className="flex-1 w-full">
-                  <div
-                    className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-[var(--color-border)] shadow-xl"
-                    style={{ aspectRatio: "16/9" }}
-                  >
-                    <div className="absolute -inset-0.5 bg-gradient-to-tr from-accent-secondary/20 to-accent-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"></div>
-                    <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
-                      <Image
-                        src={theme === "dark" ? menu.imgDark : menu.imgLight}
-                        alt={menu.title}
-                        fill
-                        className="object-cover object-left-top opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105"
-                      />
+                  <div className="relative group">
+                    {/* Glow ring behind image */}
+                    <div className="absolute -inset-3 bg-gradient-to-tr from-accent-primary/15 to-accent-secondary/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div
+                      className="relative rounded-2xl glass-card p-2 border border-[var(--color-border)] group-hover:border-accent-primary/30 transition-colors duration-300 shadow-2xl overflow-hidden"
+                      style={{ aspectRatio: "16/9" }}
+                    >
+                      {/* Corner accent dots */}
+                      <div className="absolute top-3 left-3 flex gap-1.5 z-20">
+                        <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
+                        <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
+                        <div className="w-2 h-2 rounded-full bg-accent-primary/50" />
+                      </div>
+                      <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
+                        <Image
+                          src={theme === "dark" ? menu.imgDark : menu.imgLight}
+                          alt={menu.title}
+                          fill
+                          className="object-cover object-left-top opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-[1.03]"
+                        />
+                      </div>
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Text */}
                 <motion.div
                   variants={fadeIn}
                   className="flex-1 w-full space-y-6"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-secondary)] flex items-center justify-center border border-[var(--color-border)] shadow-inner text-accent-primary">
-                    <menu.icon className="w-6 h-6" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/10 border border-accent-primary/30 flex items-center justify-center">
+                      <menu.icon className="w-5 h-5 text-accent-primary" />
+                    </div>
+                    <span className="font-mono text-[10px] text-accent-primary/70 tracking-[0.2em] uppercase">
+                      {menu.tag}
+                    </span>
                   </div>
-                  <h4 className="text-3xl lg:text-4xl font-bold tracking-tight">
+
+                  <h4 className="text-3xl lg:text-4xl font-black tracking-tight leading-tight">
                     {menu.title}
                   </h4>
-                  <p className="text-[var(--color-text-secondary)] text-lg leading-relaxed font-light">
+                  <p className="text-[var(--color-text-secondary)] text-base leading-relaxed font-light border-l-2 border-accent-primary/30 pl-4">
                     {menu.desc}
                   </p>
+
+                  {/* Subpoints */}
+                  <ul className="space-y-2 pt-2">
+                    {menu.subpoints.map((pt, j) => (
+                      <li
+                        key={j}
+                        className="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]"
+                      >
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent-primary/60 flex-shrink-0" />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
                 </motion.div>
               </motion.div>
             ))}
@@ -473,138 +706,177 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FITUR UNGGULAN */}
-      <section className="py-24 px-6 lg:px-12 max-w-7xl mx-auto relative">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 min-w-96 min-h-96 w-1/3 h-1/2 bg-accent-secondary/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* ═══════════════════════════════════════════════
+           FITUR UNGGULAN — dark pill cards on mesh bg
+      ══════════════════════════════════════════════ */}
+      <section className="relative py-32 overflow-hidden">
+        {/* Mesh gradient background */}
+        <div className="absolute inset-0 bg-[var(--color-bg-secondary)]/60 pointer-events-none" />
+        <div
+          className="absolute inset-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse 60% 50% at 20% 50%, rgba(var(--color-accent-primary-rgb),0.12) 0%, transparent 100%), radial-gradient(ellipse 60% 50% at 80% 50%, rgba(var(--color-accent-secondary-rgb),0.10) 0%, transparent 100%)",
+          }}
+        />
+        {/* Horizontal rule top */}
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-primary/20 to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-primary/20 to-transparent" />
 
-        <div className="mb-16">
-          <h2 className="text-[11px] font-bold text-accent-primary uppercase tracking-[0.2em] mb-4">
-            {t.featuresSub}
-          </h2>
-          <h3 className="text-3xl lg:text-5xl font-black mb-4">
-            {t.featuresTitle}
-          </h3>
-          <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl font-light">
-            {t.featuresDesc}
-          </p>
-        </div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {[
-            { title: t.feat1Title, icon: Zap, desc: t.feat1Desc },
-            { title: t.feat2Title, icon: Monitor, desc: t.feat2Desc },
-            { title: t.feat3Title, icon: Sliders, desc: t.feat3Desc },
-            { title: t.feat4Title, icon: Shield, desc: t.feat4Desc },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              variants={fadeIn}
-              className="glass-card rounded-2xl p-8 hover:border-[var(--color-text-secondary)] transition duration-300 group"
-            >
-              <div className="flex items-start gap-5 w-full">
-                <div className="p-3 bg-[var(--color-bg-secondary)] rounded-lg group-hover:bg-[var(--color-bg-tertiary)] transition-colors border border-[var(--color-border)] group-hover:border-accent-primary/50 shadow-inner">
-                  <item.icon className="w-5 h-5 text-accent-secondary" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-sm font-bold uppercase tracking-tight text-[var(--color-text-primary)] mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs font-light text-[var(--color-text-secondary)] leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-
-      {/* PREVIEW ANIMASI BAR */}
-      <section className="py-24 bg-[var(--color-bg-secondary)] border-t border-[var(--color-border)] relative">
-        <div className="max-w-5xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
+            variants={staggerContainer}
+            className="flex flex-col lg:flex-row gap-16 lg:gap-20 items-start"
           >
-            <h2 className="text-[11px] font-bold text-[var(--color-text-secondary)] uppercase tracking-[0.2em] mb-4">
-              {t.previewSub}
-            </h2>
-            <h3 className="text-3xl lg:text-5xl font-black leading-tight mb-12">
-              {t.previewTitle1}{" "}
-              <span className="text-accent-secondary">{t.previewTitle2}</span>
-            </h3>
-
-            <div className="relative group w-full max-w-4xl mx-auto rounded-3xl overflow-hidden glass-card p-2 border border-[var(--color-border)] shadow-2xl">
-              <div className="absolute inset-0 bg-accent-primary/5 group-hover:bg-accent-primary/10 transition duration-500 z-10 pointer-events-none" />
-              <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[var(--color-bg-primary)]">
-                <Image
-                  src="/assets/pyun-preview.gif"
-                  alt="Pyun Bar Transition Preview"
-                  fill
-                  unoptimized
-                  className="object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                  onError={(e) => {
-                    e.currentTarget.style.opacity = "0.5";
-                    const fallback =
-                      e.currentTarget.parentElement?.parentElement?.querySelector(
-                        ".fallback-text",
-                      );
-                    if (fallback) fallback.classList.remove("hidden");
-                  }}
-                />
-              </div>
-              <div className="fallback-text hidden absolute inset-0 flex items-center justify-center text-[var(--color-text-secondary)] font-medium z-0 text-sm">
-                {t.previewOverlay}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center gap-3 mt-8">
-              <div className="h-[1px] w-12 bg-[var(--color-border)]"></div>
-              <p className="text-xs text-[var(--color-text-secondary)] font-bold tracking-widest uppercase">
-                {t.previewOpt}
+            {/* Left sticky header */}
+            <motion.div
+              variants={fadeIn}
+              className="lg:w-80 lg:sticky lg:top-24 flex-shrink-0"
+            >
+              <h2 className="text-[11px] font-bold text-accent-primary uppercase tracking-[0.2em] mb-4">
+                {t.featuresSub}
+              </h2>
+              <h3 className="text-3xl lg:text-4xl font-black mb-5 leading-tight">
+                {t.featuresTitle}
+              </h3>
+              <p className="text-[var(--color-text-secondary)] text-base font-light leading-relaxed">
+                {t.featuresDesc}
               </p>
-              <div className="h-[1px] w-12 bg-[var(--color-border)]"></div>
-            </div>
+              {/* Decorative vertical line */}
+              <div className="hidden lg:block mt-10 ml-1 w-px h-24 bg-gradient-to-b from-accent-primary/40 to-transparent" />
+            </motion.div>
+
+            {/* Right cards grid */}
+            <motion.div
+              variants={staggerContainer}
+              className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5"
+            >
+              {[
+                {
+                  title: t.feat1Title,
+                  icon: Zap,
+                  desc: t.feat1Desc,
+                  accent: "from-accent-primary/10 to-accent-secondary/5",
+                  iconColor: "text-accent-primary",
+                },
+                {
+                  title: t.feat2Title,
+                  icon: Monitor,
+                  desc: t.feat2Desc,
+                  accent: "from-accent-secondary/10 to-accent-primary/5",
+                  iconColor: "text-accent-secondary",
+                },
+                {
+                  title: t.feat3Title,
+                  icon: Sliders,
+                  desc: t.feat3Desc,
+                  accent: "from-accent-primary/8 to-transparent",
+                  iconColor: "text-accent-primary",
+                },
+                {
+                  title: t.feat4Title,
+                  icon: Shield,
+                  desc: t.feat4Desc,
+                  accent: "from-accent-secondary/8 to-transparent",
+                  iconColor: "text-accent-secondary",
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeIn}
+                  className={`group relative glass-card rounded-2xl p-7 border border-[var(--color-border)] hover:border-accent-primary/30 transition-all duration-300 overflow-hidden`}
+                >
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                  />
+                  <div className="relative z-10">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] group-hover:border-accent-primary/40 flex items-center justify-center mb-5 transition-colors">
+                      <item.icon className={`w-5 h-5 ${item.iconColor}`} />
+                    </div>
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--color-text-primary)] mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs font-light text-[var(--color-text-secondary)] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[var(--color-bg-primary)] pt-16 pb-8 px-6 border-t border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-center md:text-left space-y-2">
-            <p className="text-[var(--color-text-secondary)] font-light text-sm">
-              {t.footerMadeWith}{" "}
-              <span className="text-accent-primary px-1">⚡</span> {t.footerBy}
-            </p>
-            <p className="text-[var(--color-text-secondary)]/70 text-xs">
+      {/* ═══════════════════════════════════════════════
+           FOOTER — refined with grid & brand accent
+      ══════════════════════════════════════════════ */}
+      <footer className="relative overflow-hidden">
+        {/* Subtle grid */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.025]"
+          style={{
+            backgroundImage:
+              "linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+        {/* Top glow line */}
+        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-primary/40 to-transparent" />
+        {/* Bottom left orb */}
+        <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-accent-primary/8 rounded-full blur-[60px] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
+          {/* Brand row */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
+            {/* Logo + tagline */}
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl glass-card border border-[var(--color-border)] flex items-center justify-center">
+                <Image
+                  src="/icons/icon.png"
+                  alt="Pyun"
+                  width={40}
+                  height={40}
+                />
+              </div>
+              <div>
+                <p className="font-black tracking-tight text-[var(--color-text-primary)] text-lg leading-none">
+                  Pyun Project
+                </p>
+                <p className="text-[10px] text-[var(--color-text-secondary)]/60 tracking-widest mt-0.5">
+                  Overlay Scoreboard
+                </p>
+              </div>
+            </div>
+
+            {/* Links */}
+            <div className="flex items-center gap-3">
+              <a
+                href="https://github.com/VhalennnG/pyun"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] hover:border-accent-primary/40 hover:bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-accent-primary transition-all duration-300 group"
+              >
+                <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                <span className="font-bold text-xs uppercase tracking-wider">
+                  {t.viewGithub}
+                </span>
+                <ExternalLink className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity text-accent-secondary" />
+              </a>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent mb-8" />
+
+          {/* Bottom meta */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-[var(--color-text-secondary)]/50">
+            <p>
               &copy; {new Date().getFullYear()} {t.footerRights}
             </p>
           </div>
-
-          <a
-            href="https://github.com/VhalennnG/pyun"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-6 py-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] hover:bg-[var(--color-border)] hover:border-[var(--color-text-secondary)] text-[var(--color-text-primary)] hover:text-accent-primary transition-all duration-300 group"
-          >
-            <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
-            <span className="font-bold text-xs uppercase tracking-tight">
-              {t.viewGithub}{" "}
-              <span className="font-normal opacity-50 ml-1">
-                {t.openSource}
-              </span>
-            </span>
-            <ExternalLink className="w-3 h-3 ml-1 opacity-50 group-hover:opacity-100 transition-opacity text-accent-secondary" />
-          </a>
         </div>
       </footer>
     </div>
