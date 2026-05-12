@@ -124,7 +124,7 @@ export default function Home() {
                 transition={{ duration: 0.2 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                {lang === "en" ? "ID" : "EN"}
+                {lang === "en" ? "EN" : "ID"}
               </motion.span>
             </AnimatePresence>
           </div>

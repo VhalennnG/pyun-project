@@ -1,6 +1,6 @@
 export const dict = {
   en: {
-    heroTag: "Pyun Overlay System",
+    heroTag: "Pyun Project",
     heroTitle1: "Level Up Your",
     heroTitle2: "Stream Overlay",
     heroDesc:
@@ -48,15 +48,20 @@ export const dict = {
     previewOpt: "Optimized for 60 FPS",
     menusSub: "Navigation",
     menusTitle: "Control Menus",
-    menusDesc: "Manage your overlay system via these four main categories accessible through the sidebar.",
+    menusDesc:
+      "Manage your overlay system via these four main categories accessible through the sidebar.",
     menuScoreTitle: "Score & Control",
-    menuScoreDesc: "Control live data instantly. Add or reduce team points, switch to currency/donation mode, set visual milestones, and quickly reset all data.",
+    menuScoreDesc:
+      "Control live data instantly. Add or reduce team points, switch to currency/donation mode, set visual milestones, and quickly reset all data.",
     menuTeamsTitle: "Teams & Identity",
-    menuTeamsDesc: "Manage participant identities. Easily add or remove teams, customize names, choose distinct theme colors, and upload high-quality team logos.",
+    menuTeamsDesc:
+      "Manage participant identities. Easily add or remove teams, customize names, choose distinct theme colors, and upload high-quality team logos.",
     menuLayoutTitle: "Visual Layouts",
-    menuLayoutDesc: "Choose a visual style that matches your stream's vibe. Select from Standard, Bubbles, Avatar VS, Speedometer, or Neon Stack and customize specific elements.",
+    menuLayoutDesc:
+      "Choose a visual style that matches your stream's vibe. Select from Standard, Bubbles, Avatar VS, Speedometer, or Neon Stack and customize specific elements.",
     menuSettingsTitle: "Settings",
-    menuSettingsDesc: "Optimize app performance and appearance. Configure language, theme, global font sizes, overlay opacity, drag areas, and view integration guides.",
+    menuSettingsDesc:
+      "Optimize app performance and appearance. Configure language, theme, global font sizes, overlay opacity, drag areas, and view integration guides.",
     footerMadeWith: "Made with",
     footerBy: "by Vhalen for the Streamer Community.",
     footerRights: "Pyun Overlay System. All rights reserved.",
@@ -64,7 +69,7 @@ export const dict = {
     openSource: "Open Source",
   },
   id: {
-    heroTag: "Sistem Overlay Pyun",
+    heroTag: "Pyun Project",
     heroTitle1: "Tingkatkan Level",
     heroTitle2: "Overlay Stream Anda",
     heroDesc:
@@ -112,15 +117,20 @@ export const dict = {
     previewOpt: "Dioptimalkan untuk 60 FPS",
     menusSub: "Navigasi",
     menusTitle: "Menu Kontrol",
-    menusDesc: "Aplikasi Pyun dibagi menjadi empat kategori utama yang dapat diakses dengan mudah melalui sidebar.",
+    menusDesc:
+      "Aplikasi Pyun dibagi menjadi empat kategori utama yang dapat diakses dengan mudah melalui sidebar.",
     menuScoreTitle: "Skor & Kontrol",
-    menuScoreDesc: "Kontrol data secara langsung. Tambah atau kurangi poin tim, gunakan mode mata uang/donasi, tentukan target angka (milestone), dan reset semua data ke nol.",
+    menuScoreDesc:
+      "Kontrol data secara langsung. Tambah atau kurangi poin tim, gunakan mode mata uang/donasi, tentukan target angka (milestone), dan reset semua data ke nol.",
     menuTeamsTitle: "Tim & Identitas",
-    menuTeamsDesc: "Kelola identitas peserta. Tambah peserta baru, ubah nama tim, pilih warna tema secara manual atau otomatis, dan unggah logo tim.",
+    menuTeamsDesc:
+      "Kelola identitas peserta. Tambah peserta baru, ubah nama tim, pilih warna tema secara manual atau otomatis, dan unggah logo tim.",
     menuLayoutTitle: "Visual Layout",
-    menuLayoutDesc: "Pilih gaya visual overlay yang sesuai. Pilih dari mode Standard, Bubbles, Avatar VS, Speedometer, atau Neon Stack, lalu atur kustomisasi elemen visualnya.",
+    menuLayoutDesc:
+      "Pilih gaya visual overlay yang sesuai. Pilih dari mode Standard, Bubbles, Avatar VS, Speedometer, atau Neon Stack, lalu atur kustomisasi elemen visualnya.",
     menuSettingsTitle: "Pengaturan",
-    menuSettingsDesc: "Konfigurasi teknis untuk mengoptimalkan performa. Mengatur bahasa, tema, transparansi overlay, kecepatan animasi, area drag, dan panduan integrasi.",
+    menuSettingsDesc:
+      "Konfigurasi teknis untuk mengoptimalkan performa. Mengatur bahasa, tema, transparansi overlay, kecepatan animasi, area drag, dan panduan integrasi.",
     footerMadeWith: "Dibuat dengan",
     footerBy: "oleh Vhalen untuk Komunitas Streamer.",
     footerRights: "Pyun Overlay System. Hak Cipta Dilindungi.",
