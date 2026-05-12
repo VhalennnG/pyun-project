@@ -11,7 +11,6 @@ import {
   Sun,
   Moon,
   Globe,
-  Terminal,
   Monitor,
 } from "lucide-react";
 import { FaWindows, FaApple, FaLinux } from "react-icons/fa";
@@ -221,11 +220,18 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-[var(--color-border)]" style={{ aspectRatio: "2816 / 1664" }}>
+          <div
+            className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-[var(--color-border)]"
+            style={{ aspectRatio: "2816 / 1664" }}
+          >
             <div className="absolute -inset-0.5 bg-gradient-to-tr from-accent-secondary/30 to-accent-primary/20 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-500"></div>
             <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)]">
               <Image
-                src={theme === "dark" ? "/assets/hero_dark.png" : "/assets/hero_light.png"}
+                src={
+                  theme === "dark"
+                    ? "/assets/hero_dark.png"
+                    : "/assets/hero_light.png"
+                }
                 alt="Pyun Control Panel & OBS Dashboard"
                 width={2816}
                 height={1664}
@@ -357,6 +363,113 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* MENU & FITUR */}
+      <section className="py-24 bg-[var(--color-bg-primary)] relative border-b border-[var(--color-border)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="text-center mb-20"
+          >
+            <motion.h2
+              variants={fadeIn}
+              className="text-[11px] font-bold text-accent-primary uppercase tracking-[0.2em] mb-4"
+            >
+              {t.menusSub}
+            </motion.h2>
+            <motion.h3
+              variants={fadeIn}
+              className="text-3xl lg:text-5xl font-black mb-4"
+            >
+              {t.menusTitle}
+            </motion.h3>
+            <motion.p
+              variants={fadeIn}
+              className="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed font-light"
+            >
+              {t.menusDesc}
+            </motion.p>
+          </motion.div>
+
+          <div className="space-y-32">
+            {[
+              {
+                title: t.menuScoreTitle,
+                desc: t.menuScoreDesc,
+                imgDark: "/assets/score_dark.png",
+                imgLight: "/assets/score_light.png",
+                icon: Zap,
+              },
+              {
+                title: t.menuTeamsTitle,
+                desc: t.menuTeamsDesc,
+                imgDark: "/assets/team_dark.png",
+                imgLight: "/assets/team_light.png",
+                icon: Shield,
+              },
+              {
+                title: t.menuLayoutTitle,
+                desc: t.menuLayoutDesc,
+                imgDark: "/assets/layout_dark.png",
+                imgLight: "/assets/layout_light.png",
+                icon: Monitor,
+              },
+              {
+                title: t.menuSettingsTitle,
+                desc: t.menuSettingsDesc,
+                imgDark: "/assets/setting_dark.png",
+                imgLight: "/assets/setting_light.png",
+                icon: Sliders,
+              },
+            ].map((menu, i) => (
+              <motion.div
+                key={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={staggerContainer}
+                className={`flex flex-col gap-12 lg:gap-20 items-center ${
+                  i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"
+                }`}
+              >
+                <motion.div variants={fadeIn} className="flex-1 w-full">
+                  <div
+                    className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-[var(--color-border)] shadow-xl"
+                    style={{ aspectRatio: "16/9" }}
+                  >
+                    <div className="absolute -inset-0.5 bg-gradient-to-tr from-accent-secondary/20 to-accent-primary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur transition duration-500"></div>
+                    <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
+                      <Image
+                        src={theme === "dark" ? menu.imgDark : menu.imgLight}
+                        alt={menu.title}
+                        fill
+                        className="object-cover object-left-top opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  variants={fadeIn}
+                  className="flex-1 w-full space-y-6"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-secondary)] flex items-center justify-center border border-[var(--color-border)] shadow-inner text-accent-primary">
+                    <menu.icon className="w-6 h-6" />
+                  </div>
+                  <h4 className="text-3xl lg:text-4xl font-bold tracking-tight">
+                    {menu.title}
+                  </h4>
+                  <p className="text-[var(--color-text-secondary)] text-lg leading-relaxed font-light">
+                    {menu.desc}
+                  </p>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
