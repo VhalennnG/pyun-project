@@ -824,7 +824,7 @@ export default function Home() {
           }}
         />
         {/* Top glow line */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-primary/40 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-accent-primary/40 to-transparent" />
         {/* Bottom left orb */}
         <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-accent-primary/8 rounded-full blur-[60px] pointer-events-none" />
 
@@ -842,11 +842,11 @@ export default function Home() {
                 />
               </div>
               <div>
-                <p className="font-black tracking-tight text-[var(--color-text-primary)] text-lg leading-none">
+                <p className="font-black tracking-tight text-(--color-text-primary) text-lg leading-none">
                   Pyun Project
                 </p>
-                <p className="text-[10px] text-[var(--color-text-secondary)]/60 tracking-widest mt-0.5">
-                  Overlay Scoreboard
+                <p className="text-[10px] text-(--color-text-secondary)/60 tracking-widest mt-0.5">
+                  Versus Overlay
                 </p>
               </div>
             </div>
@@ -857,7 +857,7 @@ export default function Home() {
                 href="https://github.com/VhalennnG/pyun"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)] hover:border-accent-primary/40 hover:bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:text-accent-primary transition-all duration-300 group"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-(--color-border) bg-(--color-bg-secondary) hover:border-accent-primary/40 hover:bg-(--color-bg-tertiary) text-(--color-text-secondary) hover:text-accent-primary transition-all duration-300 group"
               >
                 <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="font-bold text-xs uppercase tracking-wider">
@@ -869,10 +869,10 @@ export default function Home() {
           </div>
 
           {/* Divider */}
-          <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-border)] to-transparent mb-8" />
+          <div className="h-px bg-linear-to-r from-transparent via-(--color-border) to-transparent mb-8" />
 
           {/* Bottom meta */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-[var(--color-text-secondary)]/50">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-(--color-text-secondary)/50">
             <p>
               &copy; {new Date().getFullYear()} {t.footerRights}
             </p>
