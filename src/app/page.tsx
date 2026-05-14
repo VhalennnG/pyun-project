@@ -16,6 +16,9 @@ import {
 import { FaWindows, FaApple, FaLinux } from "react-icons/fa";
 import { dict, type Lang } from "@/lib/dict";
 
+const isProd = process.env.NODE_ENV === "production";
+const basePath = isProd ? "/pyun" : "";
+
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -229,8 +232,8 @@ export default function Home() {
               <Image
                 src={
                   theme === "dark"
-                    ? "/assets/hero_dark.png"
-                    : "/assets/hero_light.png"
+                    ? `${basePath}/assets/hero_dark.png`
+                    : `${basePath}/assets/hero_light.png`
                 }
                 alt="Pyun Control Panel & OBS Dashboard"
                 width={2816}
@@ -249,7 +252,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-linear-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-[2.5rem] opacity-0 group-hover/logo:opacity-100 transition-opacity blur-md" />
             <div className="relative w-full h-full group-hover/logo:scale-110 transition-transform duration-300">
               <Image
-                src="/icons/pyun.png"
+                src={`${basePath}/icons/pyun.png`}
                 alt="Pyun Logo"
                 fill
                 className="object-contain drop-shadow-2xl z-10"
@@ -468,7 +471,7 @@ export default function Home() {
                 step: t.step1Tag,
                 title: t.step1Title,
                 desc: t.step1Desc,
-                img: "/assets/step-setup.svg",
+                img: `${basePath}/assets/step-setup.svg`,
                 icon: Sliders,
                 num: "01",
               },
@@ -476,7 +479,7 @@ export default function Home() {
                 step: t.step2Tag,
                 title: t.step2Title,
                 desc: t.step2Desc,
-                img: "/assets/step-obs.svg",
+                img: `${basePath}/assets/step-obs.svg`,
                 icon: Monitor,
                 num: "02",
               },
@@ -484,7 +487,7 @@ export default function Home() {
                 step: t.step3Tag,
                 title: t.step3Title,
                 desc: t.step3Desc,
-                img: "/assets/step-live.svg",
+                img: `${basePath}/assets/step-live.svg`,
                 icon: Zap,
                 num: "03",
               },
@@ -575,8 +578,8 @@ export default function Home() {
               {
                 title: t.menuScoreTitle,
                 desc: t.menuScoreDesc,
-                imgDark: "/assets/score_dark.png",
-                imgLight: "/assets/score_light.png",
+                imgDark: `${basePath}/assets/score_dark.png`,
+                imgLight: `${basePath}/assets/score_light.png`,
                 icon: Zap,
                 tag: "Menu 01",
                 subpoints: [
@@ -589,8 +592,8 @@ export default function Home() {
               {
                 title: t.menuTeamsTitle,
                 desc: t.menuTeamsDesc,
-                imgDark: "/assets/team_dark.png",
-                imgLight: "/assets/team_light.png",
+                imgDark: `${basePath}/assets/team_dark.png`,
+                imgLight: `${basePath}/assets/team_light.png`,
                 icon: Shield,
                 tag: "Menu 02",
                 subpoints: [
@@ -603,8 +606,8 @@ export default function Home() {
               {
                 title: t.menuLayoutTitle,
                 desc: t.menuLayoutDesc,
-                imgDark: "/assets/layout_dark.png",
-                imgLight: "/assets/layout_light.png",
+                imgDark: `${basePath}/assets/layout_dark.png`,
+                imgLight: `${basePath}/assets/layout_light.png`,
                 icon: Monitor,
                 tag: "Menu 03",
                 subpoints: [
@@ -617,8 +620,8 @@ export default function Home() {
               {
                 title: t.menuSettingsTitle,
                 desc: t.menuSettingsDesc,
-                imgDark: "/assets/setting_dark.png",
-                imgLight: "/assets/setting_light.png",
+                imgDark: `${basePath}/assets/setting_dark.png`,
+                imgLight: `${basePath}/assets/setting_light.png`,
                 icon: Sliders,
                 tag: "Menu 04",
                 subpoints: [
@@ -835,7 +838,7 @@ export default function Home() {
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl glass-card border border-(--color-border) flex items-center justify-center">
                 <Image
-                  src="/icons/icon.png"
+                  src={`${basePath}/icons/icon.png`}
                   alt="Pyun"
                   width={40}
                   height={40}
