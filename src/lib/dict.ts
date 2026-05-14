@@ -1,7 +1,7 @@
 export const dict = {
   en: {
     // ── Hero ──────────────────────────────────────────────
-    heroTag: "Pyun Project",
+    heroTag: "Pyun Stream",
     heroTitle1: "Your Stream Deserves a",
     heroTitle2: "Better Overlay",
     heroDesc:
@@ -9,9 +9,10 @@ export const dict = {
 
     // ── Download ──────────────────────────────────────────
     downloadWin: "Windows",
-    downloadMac: "Mac",
+    downloadMacSilicon: "Mac (Apple Silicon)",
+    downloadMacIntel: "Mac (Intel)",
     downloadLin: "Linux",
-    versionInfo: "v1.0.0 · Free Forever",
+    versionInfo: "v1.0.1 · Free & Open Source",
 
     // ── How It Works ─────────────────────────────────────
     howItWorksSub: "Instant Workflow",
@@ -125,7 +126,7 @@ export const dict = {
 
   id: {
     // ── Hero ──────────────────────────────────────────────
-    heroTag: "Pyun Project",
+    heroTag: "Pyun Stream",
     heroTitle1: "Stream-mu Layak Dapat",
     heroTitle2: "Overlay yang Lebih Keren",
     heroDesc:
@@ -133,9 +134,10 @@ export const dict = {
 
     // ── Download ──────────────────────────────────────────
     downloadWin: "Windows",
-    downloadMac: "Mac",
+    downloadMacSilicon: "Mac (Apple Silicon)",
+    downloadMacIntel: "Mac (Intel)",
     downloadLin: "Linux",
-    versionInfo: "v1.0.0 · Gratis Selamanya",
+    versionInfo: "v1.0.1 · Free & Open Source",
 
     // ── How It Works ─────────────────────────────────────
     howItWorksSub: "Literally Cuma 3 Langkah",

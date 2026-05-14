@@ -173,7 +173,7 @@ export default function Home() {
                 onClick={(e) =>
                   triggerDownload(
                     e,
-                    "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_WIN",
+                    process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS || "",
                   )
                 }
                 className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
@@ -186,20 +186,33 @@ export default function Home() {
                 onClick={(e) =>
                   triggerDownload(
                     e,
-                    "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_MAC",
+                    process.env.NEXT_PUBLIC_DOWNLOAD_MAC_SILICON || "",
                   )
                 }
                 className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <FaApple className="w-5 h-5 relative z-10" />
-                <span className="relative z-10">{t.downloadMac}</span>
+                <span className="relative z-10">{t.downloadMacSilicon}</span>
               </button>
               <button
                 onClick={(e) =>
                   triggerDownload(
                     e,
-                    "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_LINUX",
+                    process.env.NEXT_PUBLIC_DOWNLOAD_MAC_INTEL || "",
+                  )
+                }
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
+              >
+                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <FaApple className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">{t.downloadMacIntel}</span>
+              </button>
+              <button
+                onClick={(e) =>
+                  triggerDownload(
+                    e,
+                    process.env.NEXT_PUBLIC_DOWNLOAD_LINUX || "",
                   )
                 }
                 className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
@@ -319,8 +332,11 @@ export default function Home() {
           >
             {[
               {
-                youtubeUrl: "https://www.youtube.com/watch?v=5YE3k5q3g3s",
-                embedId: "5YE3k5q3g3s",
+                youtubeUrl: process.env.NEXT_PUBLIC_YOUTUBE_URL_1 || "",
+                embedId:
+                  (process.env.NEXT_PUBLIC_YOUTUBE_URL_1 || "")
+                    .split("v=")[1]
+                    ?.split("&")[0] || "5YE3k5q3g3s",
                 label: t.demo1Label,
                 title: t.demo1Title,
                 desc: t.demo1Desc,
@@ -329,8 +345,11 @@ export default function Home() {
                 glow: "rgba(var(--color-accent-primary-rgb),0.15)",
               },
               {
-                youtubeUrl: "https://www.youtube.com/watch?v=8RWpo4W_dGA",
-                embedId: "8RWpo4W_dGA",
+                youtubeUrl: process.env.NEXT_PUBLIC_YOUTUBE_URL_2 || "",
+                embedId:
+                  (process.env.NEXT_PUBLIC_YOUTUBE_URL_2 || "")
+                    .split("v=")[1]
+                    ?.split("&")[0] || "8RWpo4W_dGA",
                 label: t.demo2Label,
                 title: t.demo2Title,
                 desc: t.demo2Desc,
@@ -846,10 +865,7 @@ export default function Home() {
               </div>
               <div>
                 <p className="font-black tracking-tight text-(--color-text-primary) text-lg leading-none">
-                  Pyun Project
-                </p>
-                <p className="text-[10px] text-(--color-text-secondary)/60 tracking-widest mt-0.5">
-                  Versus Overlay
+                  Pyun Stream
                 </p>
               </div>
             </div>
@@ -857,7 +873,7 @@ export default function Home() {
             {/* Links */}
             <div className="flex items-center gap-3">
               <a
-                href="https://github.com/VhalennnG/pyun"
+                href={process.env.NEXT_PUBLIC_GITHUB_URL || ""}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-(--color-border) bg-(--color-bg-secondary) hover:border-accent-primary/40 hover:bg-(--color-bg-tertiary) text-(--color-text-secondary) hover:text-accent-primary transition-all duration-300 group"
