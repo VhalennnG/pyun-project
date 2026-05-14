@@ -63,7 +63,7 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen text-[var(--color-text-primary)] overflow-hidden font-sans selection:bg-accent-primary/30">
+    <div className="relative min-h-screen var(--color-text-primary) overflow-hidden font-sans selection:bg-accent-primary/30">
       {/* Background with Grid and Radial Fade */}
       <div className="fixed inset-0 z-[-2] bg-bg-grid-pattern pointer-events-none opacity-50" />
       <div className="fixed inset-0 z-[-1] bg-radial-fade pointer-events-none" />
@@ -73,17 +73,17 @@ export default function Home() {
         {/* Theme Switcher (Sliding) */}
         <div
           onClick={toggleTheme}
-          className="relative h-10 w-20 rounded-full glass-card cursor-pointer p-1 flex items-center hover:shadow-[0_0_20px_rgba(var(--color-accent-primary-rgb),0.2)] transition-all border border-[var(--color-border)] shadow-inner"
+          className="relative h-10 w-20 rounded-full glass-card cursor-pointer p-1 flex items-center hover:shadow-[0_0_20px_rgba(var(--color-accent-primary-rgb),0.2)] transition-all border border-(--color-border) shadow-inner"
         >
           {/* Background Icons (Static/Dim) */}
           <div className="flex justify-between w-full px-2.5 z-0 opacity-30">
-            <Sun className="w-3.5 h-3.5 text-[var(--color-text-primary)]" />
-            <Moon className="w-3.5 h-3.5 text-[var(--color-text-primary)]" />
+            <Sun className="w-3.5 h-3.5 text-(--color-text-primary)" />
+            <Moon className="w-3.5 h-3.5 text-(--color-text-primary)" />
           </div>
 
           {/* Sliding Thumb with Active Icon */}
           <motion.div
-            className="absolute h-8 w-8 bg-gradient-to-tr from-accent-primary to-accent-secondary rounded-full shadow-[0_0_15px_rgba(var(--color-accent-primary-rgb),0.4)] flex items-center justify-center z-10"
+            className="absolute h-8 w-8 bg-linear-to-tr from-accent-primary to-accent-secondary rounded-full shadow-[0_0_15px_rgba(var(--color-accent-primary-rgb),0.4)] flex items-center justify-center z-10"
             animate={{
               x: theme === "light" ? 0 : 40,
             }}
@@ -110,7 +110,7 @@ export default function Home() {
         {/* Language Toggle (Smooth Cross-fade) */}
         <button
           onClick={toggleLang}
-          className="h-10 px-4 rounded-full glass-card hover:bg-[var(--color-bg-secondary)] transition-colors hover-neon-glow flex items-center gap-2 font-bold text-xs uppercase tracking-widest min-w-[80px] justify-center"
+          className="h-10 px-4 rounded-full glass-card hover:bg-(--color-bg-secondary) transition-colors hover-neon-glow flex items-center gap-2 font-bold text-xs uppercase tracking-widest min-w-[80px] justify-center"
           aria-label="Toggle Language"
         >
           <Globe className="w-4 h-4 text-accent-primary" />
@@ -142,7 +142,7 @@ export default function Home() {
           variants={staggerContainer}
         >
           <motion.div variants={fadeIn} className="mb-6">
-            <div className="inline-block px-3 py-1 bg-[var(--color-bg-secondary)] border border-[var(--color-border)] rounded-full text-[10px] font-bold tracking-widest uppercase text-accent-primary">
+            <div className="inline-block px-3 py-1 bg-(--color-bg-secondary) border border-(--color-border) rounded-full text-[10px] font-bold tracking-widest uppercase text-accent-primary">
               {t.heroTag}
             </div>
           </motion.div>
@@ -156,7 +156,7 @@ export default function Home() {
 
           <motion.p
             variants={fadeIn}
-            className="text-lg lg:text-xl text-[var(--color-text-secondary)] mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light italic"
+            className="text-lg lg:text-xl text-(--color-text-secondary) mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light italic"
           >
             {t.heroDesc}
           </motion.p>
@@ -173,7 +173,7 @@ export default function Home() {
                     "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_WIN",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-text-primary)] text-[var(--color-bg-primary)] font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[var(--color-text-primary)]/20 overflow-hidden tracking-tight text-sm"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 <FaWindows className="w-5 h-5 relative z-10" />
@@ -186,7 +186,7 @@ export default function Home() {
                     "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_MAC",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <FaApple className="w-5 h-5 relative z-10" />
@@ -199,7 +199,7 @@ export default function Home() {
                     "https://drive.google.com/uc?export=download&id=ID_FILE_PYUN_EXE_LINUX",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-[var(--color-bg-secondary)] font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-[var(--color-text-primary)] border border-[var(--color-border)]"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
               >
                 <FaLinux className="w-5 h-5 relative z-10" />
                 <span className="relative z-10">{t.downloadLin}</span>
@@ -207,7 +207,7 @@ export default function Home() {
             </div>
             <div className="flex items-center justify-center lg:justify-start gap-3 mt-2">
               <div className="h-px w-8 bg-accent-primary"></div>
-              <p className="text-[10px] font-bold text-[var(--color-text-secondary)] uppercase tracking-widest">
+              <p className="text-[10px] font-bold text-(--color-text-secondary) uppercase tracking-widest">
                 {t.versionInfo}
               </p>
             </div>
@@ -221,11 +221,11 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div
-            className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-[var(--color-border)]"
+            className="relative rounded-2xl glass-card p-2 flex overflow-hidden group border border-(--color-border)"
             style={{ aspectRatio: "2816 / 1664" }}
           >
-            <div className="absolute -inset-0.5 bg-gradient-to-tr from-accent-secondary/30 to-accent-primary/20 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-500"></div>
-            <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)]">
+            <div className="absolute -inset-0.5 bg-linear-to-tr from-accent-secondary/30 to-accent-primary/20 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-500"></div>
+            <div className="relative rounded-xl w-full h-full overflow-hidden border border-(--color-border)">
               <Image
                 src={
                   theme === "dark"
@@ -236,7 +236,7 @@ export default function Home() {
                 width={2816}
                 height={1664}
                 priority
-                className="w-full h-full object-cover object-center bg-[var(--color-bg-secondary)] opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                className="w-full h-full object-cover object-center bg-(--color-bg-secondary) opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
             </div>
           </div>
@@ -246,10 +246,10 @@ export default function Home() {
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -bottom-8 -left-8 md:-bottom-12 md:-left-12 w-32 h-32 md:w-48 md:h-48 z-20 glass-card rounded-[2.5rem] shadow-2xl backdrop-blur-xl flex items-center justify-center group/logo cursor-pointer"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-[2.5rem] opacity-0 group-hover/logo:opacity-100 transition-opacity blur-md" />
+            <div className="absolute inset-0 bg-linear-to-tr from-accent-primary/20 to-accent-secondary/20 rounded-[2.5rem] opacity-0 group-hover/logo:opacity-100 transition-opacity blur-md" />
             <div className="relative w-full h-full group-hover/logo:scale-110 transition-transform duration-300">
               <Image
-                src="/assets/pyun.png"
+                src="/icons/pyun.png"
                 alt="Pyun Logo"
                 fill
                 className="object-contain drop-shadow-2xl z-10"
@@ -266,7 +266,7 @@ export default function Home() {
       </section>
 
       {/* DEMO SECTION */}
-      <section className="relative py-28 px-6 lg:px-12 overflow-hidden border-t border-[var(--color-border)]">
+      <section className="relative py-28 px-6 lg:px-12 overflow-hidden border-t border-(--color-border)">
         {/* Ambient blobs */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-accent-primary/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent-secondary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -284,11 +284,11 @@ export default function Home() {
               variants={fadeIn}
               className="inline-flex items-center gap-2 mb-5"
             >
-              <div className="h-px w-8 bg-gradient-to-r from-transparent to-accent-primary" />
+              <div className="h-px w-8 bg-linear-to-r from-transparent to-accent-primary" />
               <span className="text-[10px] font-bold text-accent-primary uppercase tracking-[0.25em]">
                 {t.demoSub}
               </span>
-              <div className="h-px w-8 bg-gradient-to-l from-transparent to-accent-primary" />
+              <div className="h-px w-8 bg-linear-to-l from-transparent to-accent-primary" />
             </motion.div>
             <motion.h3
               variants={fadeIn}
@@ -300,7 +300,7 @@ export default function Home() {
             </motion.h3>
             <motion.p
               variants={fadeIn}
-              className="text-[var(--color-text-secondary)] text-lg max-w-xl mx-auto font-light leading-relaxed"
+              className="text-(--color-text-secondary) text-lg max-w-xl mx-auto font-light leading-relaxed"
             >
               {t.demoDesc}
             </motion.p>
@@ -345,24 +345,24 @@ export default function Home() {
                   }}
                 />
 
-                <div className="relative glass-card rounded-3xl overflow-hidden border border-[var(--color-border)] group-hover:border-[var(--color-text-secondary)]/40 transition-colors duration-300">
+                <div className="relative glass-card rounded-3xl overflow-hidden border border-(--color-border) group-hover:border-(--color-text-secondary)/40 transition-colors duration-300">
                   {/* Top label bar */}
                   <div
-                    className={`flex items-center justify-between px-5 py-3.5 border-b border-[var(--color-border)] bg-gradient-to-r ${video.accent}`}
+                    className={`flex items-center justify-between px-5 py-3.5 border-b border-(--color-border) bg-linear-to-r ${video.accent}`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="font-mono text-[10px] text-[var(--color-text-secondary)] font-bold tracking-[0.2em]">
+                      <span className="font-mono text-[10px] text-(--color-text-secondary) font-bold tracking-[0.2em]">
                         {video.tag}
                       </span>
-                      <div className="w-px h-3 bg-[var(--color-border)]" />
+                      <div className="w-px h-3 bg-(--color-border)" />
                       <span className="text-[10px] font-bold uppercase tracking-widest text-accent-primary">
                         {video.label}
                       </span>
                     </div>
                     {/* Fake window dots */}
                     <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-border)]" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--color-border)]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-(--color-border)" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-(--color-border)" />
                       <div className="w-2.5 h-2.5 rounded-full bg-accent-primary/50" />
                     </div>
                   </div>
@@ -384,7 +384,7 @@ export default function Home() {
                   {/* Bottom info */}
                   <div className="px-5 py-4 flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-bold text-[var(--color-text-primary)] mb-1 truncate">
+                      <h4 className="text-sm font-bold text-(--color-text-primary) mb-1 truncate">
                         {video.title}
                       </h4>
                     </div>
@@ -392,7 +392,7 @@ export default function Home() {
                       href={video.youtubeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[var(--color-border)] hover:border-accent-primary/50 hover:bg-[var(--color-bg-secondary)] text-[var(--color-text-secondary)] hover:text-accent-primary transition-all duration-200 group/link"
+                      className="shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-lg border border-(--color-border) hover:border-accent-primary/50 hover:bg-(--color-bg-secondary) text-(--color-text-secondary) hover:text-accent-primary transition-all duration-200 group/link"
                     >
                       <ExternalLink className="w-3.5 h-3.5 group-hover/link:scale-110 transition-transform" />
                       <span className="text-[10px] font-bold uppercase tracking-wider">
@@ -421,7 +421,7 @@ export default function Home() {
           }}
         />
         {/* Gradient mask on top of stripes */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-bg-primary)] via-transparent to-[var(--color-bg-primary)] pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-b from-(--color-bg-primary) via-transparent to-(--color-bg-primary) pointer-events-none" />
         {/* Centered glow */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent-primary/8 rounded-full blur-[120px] pointer-events-none" />
 
@@ -447,7 +447,7 @@ export default function Home() {
             </motion.h3>
             <motion.p
               variants={fadeIn}
-              className="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed font-light"
+              className="text-(--color-text-secondary) max-w-2xl mx-auto text-lg leading-relaxed font-light"
             >
               {t.howItWorksDesc}
             </motion.p>
@@ -461,7 +461,7 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-3 gap-6 relative"
           >
             {/* Connector line between cards (desktop only) */}
-            <div className="hidden md:block absolute top-14 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-gradient-to-r from-transparent via-accent-primary/30 to-transparent pointer-events-none" />
+            <div className="hidden md:block absolute top-14 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-linear-to-r from-transparent via-accent-primary/30 to-transparent pointer-events-none" />
 
             {[
               {
@@ -492,17 +492,17 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeIn}
-                className="group relative glass-card rounded-2xl p-8 border border-[var(--color-border)] hover:border-accent-primary/40 transition-all duration-300 flex flex-col overflow-hidden"
+                className="group relative glass-card rounded-2xl p-8 border border-(--color-border) hover:border-accent-primary/40 transition-all duration-300 flex flex-col overflow-hidden"
               >
                 {/* Hover accent shimmer */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-accent-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Step number badge */}
                 <div className="flex items-center justify-between mb-8">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/10 border border-accent-primary/30 flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(var(--color-accent-primary-rgb),0.2)] transition-shadow">
+                  <div className="w-11 h-11 rounded-xl bg-linear-to-tr from-accent-primary/20 to-accent-secondary/10 border border-accent-primary/30 flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(var(--color-accent-primary-rgb),0.2)] transition-shadow">
                     <item.icon className="w-5 h-5 text-accent-primary" />
                   </div>
-                  <span className="font-mono text-4xl font-black text-[var(--color-border)] group-hover:text-accent-primary/20 transition-colors leading-none select-none">
+                  <span className="font-mono text-4xl font-black text-(--color-border) group-hover:text-accent-primary/20 transition-colors leading-none select-none">
                     {item.num}
                   </span>
                 </div>
@@ -510,10 +510,10 @@ export default function Home() {
                 <div className="font-mono text-[10px] text-accent-primary/70 mb-2 tracking-[0.2em] uppercase">
                   {item.step}
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-[var(--color-text-primary)] tracking-tight">
+                <h3 className="text-xl font-bold mb-3 text-(--color-text-primary) tracking-tight">
                   {item.title}
                 </h3>
-                <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mt-auto font-light">
+                <p className="text-sm text-(--color-text-secondary) leading-relaxed mt-auto font-light">
                   {item.desc}
                 </p>
               </motion.div>
@@ -527,7 +527,7 @@ export default function Home() {
       ══════════════════════════════════════════════ */}
       <section className="relative py-32 overflow-hidden">
         {/* Left side glow panel */}
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-accent-primary/30 to-transparent" />
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-linear-to-b from-transparent via-accent-primary/30 to-transparent" />
         {/* Ambient orbs */}
         <div className="absolute -left-32 top-1/4 w-80 h-80 bg-accent-primary/10 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute -right-32 bottom-1/4 w-80 h-80 bg-accent-secondary/10 rounded-full blur-[100px] pointer-events-none" />
@@ -564,7 +564,7 @@ export default function Home() {
             </motion.h3>
             <motion.p
               variants={fadeIn}
-              className="text-[var(--color-text-secondary)] max-w-2xl mx-auto text-lg leading-relaxed font-light"
+              className="text-(--color-text-secondary) max-w-2xl mx-auto text-lg leading-relaxed font-light"
             >
               {t.menusDesc}
             </motion.p>
@@ -643,23 +643,23 @@ export default function Home() {
                 <motion.div variants={fadeIn} className="flex-1 w-full">
                   <div className="relative group">
                     {/* Glow ring behind image */}
-                    <div className="absolute -inset-3 bg-gradient-to-tr from-accent-primary/15 to-accent-secondary/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                    <div className="absolute -inset-3 bg-linear-to-tr from-accent-primary/15 to-accent-secondary/10 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                     <div
-                      className="relative rounded-2xl glass-card p-2 border border-[var(--color-border)] group-hover:border-accent-primary/30 transition-colors duration-300 shadow-2xl overflow-hidden"
+                      className="relative rounded-2xl glass-card p-2 border border-(--color-border) group-hover:border-accent-primary/30 transition-colors duration-300 shadow-2xl overflow-hidden"
                       style={{ aspectRatio: "16/9" }}
                     >
                       {/* Corner accent dots */}
                       <div className="absolute top-3 left-3 flex gap-1.5 z-20">
-                        <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
-                        <div className="w-2 h-2 rounded-full bg-[var(--color-border)]" />
+                        <div className="w-2 h-2 rounded-full bg-(--color-border)" />
+                        <div className="w-2 h-2 rounded-full bg-(--color-border)" />
                         <div className="w-2 h-2 rounded-full bg-accent-primary/50" />
                       </div>
-                      <div className="relative rounded-xl w-full h-full overflow-hidden border border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
+                      <div className="relative rounded-xl w-full h-full overflow-hidden border border-(--color-border) bg-(--color-bg-secondary)">
                         <Image
                           src={theme === "dark" ? menu.imgDark : menu.imgLight}
                           alt={menu.title}
                           fill
-                          className="object-cover object-left-top opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-[1.03]"
+                          className="object-cover object-top-left opacity-90 group-hover:opacity-100 transition-transform duration-700 group-hover:scale-[1.03]"
                         />
                       </div>
                     </div>
@@ -672,7 +672,7 @@ export default function Home() {
                   className="flex-1 w-full space-y-6"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-accent-primary/20 to-accent-secondary/10 border border-accent-primary/30 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-accent-primary/20 to-accent-secondary/10 border border-accent-primary/30 flex items-center justify-center">
                       <menu.icon className="w-5 h-5 text-accent-primary" />
                     </div>
                     <span className="font-mono text-[10px] text-accent-primary/70 tracking-[0.2em] uppercase">
@@ -683,7 +683,7 @@ export default function Home() {
                   <h4 className="text-3xl lg:text-4xl font-black tracking-tight leading-tight">
                     {menu.title}
                   </h4>
-                  <p className="text-[var(--color-text-secondary)] text-base leading-relaxed font-light border-l-2 border-accent-primary/30 pl-4">
+                  <p className="text-(--color-text-secondary) text-base leading-relaxed font-light border-l-2 border-accent-primary/30 pl-4">
                     {menu.desc}
                   </p>
 
@@ -692,9 +692,9 @@ export default function Home() {
                     {menu.subpoints.map((pt, j) => (
                       <li
                         key={j}
-                        className="flex items-center gap-3 text-sm text-[var(--color-text-secondary)]"
+                        className="flex items-center gap-3 text-sm text-(--color-text-secondary)"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-accent-primary/60 flex-shrink-0" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent-primary/60 shrink-0" />
                         {pt}
                       </li>
                     ))}
@@ -711,7 +711,7 @@ export default function Home() {
       ══════════════════════════════════════════════ */}
       <section className="relative py-32 overflow-hidden">
         {/* Mesh gradient background */}
-        <div className="absolute inset-0 bg-[var(--color-bg-secondary)]/60 pointer-events-none" />
+        <div className="absolute inset-0 bg-(--color-bg-secondary)/60 pointer-events-none" />
         <div
           className="absolute inset-0 pointer-events-none opacity-20"
           style={{
@@ -720,8 +720,8 @@ export default function Home() {
           }}
         />
         {/* Horizontal rule top */}
-        <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-primary/20 to-transparent" />
-        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-primary/20 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-accent-primary/20 to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-accent-primary/20 to-transparent" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
@@ -734,7 +734,7 @@ export default function Home() {
             {/* Left sticky header */}
             <motion.div
               variants={fadeIn}
-              className="lg:w-80 lg:sticky lg:top-24 flex-shrink-0"
+              className="lg:w-80 lg:sticky lg:top-24 shrink-0"
             >
               <h2 className="text-[11px] font-bold text-accent-primary uppercase tracking-[0.2em] mb-4">
                 {t.featuresSub}
@@ -742,11 +742,11 @@ export default function Home() {
               <h3 className="text-3xl lg:text-4xl font-black mb-5 leading-tight">
                 {t.featuresTitle}
               </h3>
-              <p className="text-[var(--color-text-secondary)] text-base font-light leading-relaxed">
+              <p className="text-(--color-text-secondary) text-base font-light leading-relaxed">
                 {t.featuresDesc}
               </p>
               {/* Decorative vertical line */}
-              <div className="hidden lg:block mt-10 ml-1 w-px h-24 bg-gradient-to-b from-accent-primary/40 to-transparent" />
+              <div className="hidden lg:block mt-10 ml-1 w-px h-24 bg-linear-to-b from-accent-primary/40 to-transparent" />
             </motion.div>
 
             {/* Right cards grid */}
@@ -787,19 +787,19 @@ export default function Home() {
                 <motion.div
                   key={i}
                   variants={fadeIn}
-                  className={`group relative glass-card rounded-2xl p-7 border border-[var(--color-border)] hover:border-accent-primary/30 transition-all duration-300 overflow-hidden`}
+                  className={`group relative glass-card rounded-2xl p-7 border border-(--color-border) hover:border-accent-primary/30 transition-all duration-300 overflow-hidden`}
                 >
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    className={`absolute inset-0 bg-linear-to-br ${item.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   />
                   <div className="relative z-10">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] group-hover:border-accent-primary/40 flex items-center justify-center mb-5 transition-colors">
+                    <div className="w-10 h-10 rounded-xl bg-(--color-bg-tertiary) border border-(--color-border) group-hover:border-accent-primary/40 flex items-center justify-center mb-5 transition-colors">
                       <item.icon className={`w-5 h-5 ${item.iconColor}`} />
                     </div>
-                    <h3 className="text-sm font-bold uppercase tracking-wider text-[var(--color-text-primary)] mb-3">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-(--color-text-primary) mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-xs font-light text-[var(--color-text-secondary)] leading-relaxed">
+                    <p className="text-xs font-light text-(--color-text-secondary) leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -833,7 +833,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
             {/* Logo + tagline */}
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl glass-card border border-[var(--color-border)] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl glass-card border border-(--color-border) flex items-center justify-center">
                 <Image
                   src="/icons/icon.png"
                   alt="Pyun"
