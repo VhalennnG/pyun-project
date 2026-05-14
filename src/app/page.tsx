@@ -36,7 +36,7 @@ const staggerContainer = {
 
 export default function Home() {
   const [lang, setLang] = useState<Lang>("en");
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     if (theme === "dark") {
