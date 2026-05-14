@@ -5,7 +5,7 @@ const isProd = process.env.NODE_ENV === "production";
 const basePath = isProd ? "/pyun" : "";
 
 export const metadata: Metadata = {
-  title: "Pyun - Versus Overlay",
+  title: "Pyun Stream",
   description:
     "Instant & lightweight Versus Progress Bar for Streamers. Free, standalone, and 100% local desktop software for real-time interactions.",
   icons: {

@@ -166,9 +166,10 @@ export default function Home() {
 
           <motion.div
             variants={fadeIn}
-            className="flex flex-col items-center lg:items-start gap-5"
+            className="flex flex-col items-center lg:items-start gap-5 w-full"
           >
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+            {/* Ubah container menjadi Grid dengan 2 kolom */}
+            <div className="grid grid-cols-2 gap-4 w-full lg:w-auto">
               <button
                 onClick={(e) =>
                   triggerDownload(
@@ -176,12 +177,14 @@ export default function Home() {
                     process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS || "",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
+                // Ubah inline-flex menjadi flex w-full
+                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                <FaWindows className="w-5 h-5 relative z-10" />
+                <FaWindows className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadWin}</span>
               </button>
+
               <button
                 onClick={(e) =>
                   triggerDownload(
@@ -189,12 +192,14 @@ export default function Home() {
                     process.env.NEXT_PUBLIC_DOWNLOAD_MAC_SILICON || "",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
+                // Ubah inline-flex menjadi flex w-full
+                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <FaApple className="w-5 h-5 relative z-10" />
+                <FaApple className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadMacSilicon}</span>
               </button>
+
               <button
                 onClick={(e) =>
                   triggerDownload(
@@ -202,12 +207,14 @@ export default function Home() {
                     process.env.NEXT_PUBLIC_DOWNLOAD_MAC_INTEL || "",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
+                // Ubah inline-flex menjadi flex w-full
+                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <FaApple className="w-5 h-5 relative z-10" />
+                <FaApple className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadMacIntel}</span>
               </button>
+
               <button
                 onClick={(e) =>
                   triggerDownload(
@@ -215,12 +222,14 @@ export default function Home() {
                     process.env.NEXT_PUBLIC_DOWNLOAD_LINUX || "",
                   )
                 }
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
+                // Ubah inline-flex menjadi flex w-full
+                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
               >
-                <FaLinux className="w-5 h-5 relative z-10" />
+                <FaLinux className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadLin}</span>
               </button>
             </div>
+
             <div className="flex items-center justify-center lg:justify-start gap-3 mt-2">
               <div className="h-px w-8 bg-accent-primary"></div>
               <p className="text-[10px] font-bold text-(--color-text-secondary) uppercase tracking-widest">
@@ -847,15 +856,14 @@ export default function Home() {
         />
         {/* Top glow line */}
         <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-accent-primary/40 to-transparent" />
-        {/* Bottom left orb */}
-        <div className="absolute -bottom-12 -left-12 w-48 h-48 bg-accent-primary/8 rounded-full blur-[60px] pointer-events-none" />
+        {/* Ambient orb centered below archyter text */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-48 bg-accent-primary/10 rounded-full blur-[80px] pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
-          {/* Brand row */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
-            {/* Logo + tagline */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 py-14">
+          {/* ── BRAND ROW ── */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl glass-card border border-(--color-border) flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl glass-card border border-(--color-border) flex items-center justify-center shrink-0">
                 <Image
                   src={`${basePath}/icons/icon.png`}
                   alt="Pyun"
@@ -864,37 +872,70 @@ export default function Home() {
                 />
               </div>
               <div>
-                <p className="font-black tracking-tight text-(--color-text-primary) text-lg leading-none">
+                <p className="font-black tracking-tight text-(--color-text-primary) text-lg leading-none mb-0.5">
                   Pyun Stream
+                </p>
+                <p className="text-[10px] text-(--color-text-secondary)/50 font-medium tracking-wide">
+                  {t.versionInfo}
                 </p>
               </div>
             </div>
 
-            {/* Links */}
-            <div className="flex items-center gap-3">
-              <a
-                href={process.env.NEXT_PUBLIC_GITHUB_URL || ""}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-(--color-border) bg-(--color-bg-secondary) hover:border-accent-primary/40 hover:bg-(--color-bg-tertiary) text-(--color-text-secondary) hover:text-accent-primary transition-all duration-300 group"
-              >
-                <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="font-bold text-xs uppercase tracking-wider">
-                  {t.viewGithub}
-                </span>
-                <ExternalLink className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity text-accent-secondary" />
-              </a>
-            </div>
+            <a
+              href={process.env.NEXT_PUBLIC_GITHUB_URL || ""}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-(--color-border) bg-(--color-bg-secondary) hover:border-accent-primary/40 hover:bg-(--color-bg-tertiary) text-(--color-text-secondary) hover:text-accent-primary transition-all duration-300 group"
+            >
+              <Github className="w-4 h-4 group-hover:scale-110 transition-transform" />
+              <span className="font-bold text-xs uppercase tracking-wider">
+                {t.viewGithub}
+              </span>
+              <ExternalLink className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity text-accent-secondary" />
+            </a>
           </div>
 
-          {/* Divider */}
-          <div className="h-px bg-linear-to-r from-transparent via-(--color-border) to-transparent mb-8" />
+          {/* ── DIVIDER ── */}
+          <div className="h-px bg-linear-to-r from-transparent via-(--color-border) to-transparent mb-12" />
 
-          {/* Bottom meta */}
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-(--color-text-secondary)/50">
-            <p>
-              &copy; {new Date().getFullYear()} {t.footerRights}
+          {/* ── ARCHYTER SPOTLIGHT ── */}
+          <div className="flex flex-col items-center gap-4 text-center pb-4">
+            <p className="text-[10px] font-bold text-(--color-text-secondary)/40 uppercase tracking-[0.35em]">
+              Pyun Stream by
             </p>
+
+            {/* Animated archyter — letter wave loop */}
+            <div className="group relative inline-flex items-center cursor-pointer select-none">
+              <style>{`
+                @keyframes letterWave {
+                  0%, 100% {
+                    transform: translateY(0px);
+                    color: var(--color-text-primary);
+                    text-shadow: none;
+                  }
+                  50% {
+                    transform: translateY(-8px);
+                    color: var(--color-accent-primary);
+                    text-shadow: 0 0 30px rgba(var(--color-accent-primary-rgb), 0.6);
+                  }
+                }
+                .archyter-letter {
+                  animation: letterWave 2.4s ease-in-out infinite;
+                  display: inline-block;
+                }
+              `}</style>
+              {"Archyter".split("").map((char, i) => (
+                <span
+                  key={i}
+                  className="archyter-letter text-5xl lg:text-7xl font-black tracking-[-0.03em] transition-colors duration-300"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                >
+                  {char}
+                </span>
+              ))}
+              {/* Underline glow on hover */}
+              <span className="absolute -bottom-2 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-accent-primary to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center" />
+            </div>
           </div>
         </div>
       </footer>
