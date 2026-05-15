@@ -51,18 +51,27 @@ export default function Home() {
 
   const t = dict[lang];
 
-  const triggerDownload = (
+  const triggerDownload = async (
     e: React.MouseEvent<HTMLButtonElement>,
     url: string,
+    filename?: string,
   ) => {
     e.preventDefault();
-    const a = document.createElement("a");
-    a.href = url;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    try {
+      const res = await fetch(url);
+      const blob = await res.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = blobUrl;
+      a.download = filename ?? "";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(blobUrl);
+    } catch {
+      // fallback: buka di tab baru kalau fetch gagal
+      window.open(url, "_blank");
+    }
   };
 
   return (
