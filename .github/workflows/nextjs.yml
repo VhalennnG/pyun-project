@@ -28,6 +28,12 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_DOWNLOAD_WINDOWS: ${{ vars.NEXT_PUBLIC_DOWNLOAD_WINDOWS }}
+      NEXT_PUBLIC_DOWNLOAD_MAC_SILICON: ${{ vars.NEXT_PUBLIC_DOWNLOAD_MAC_SILICON }}
+      NEXT_PUBLIC_DOWNLOAD_MAC_INTEL: ${{ vars.NEXT_PUBLIC_DOWNLOAD_MAC_INTEL }}
+      NEXT_PUBLIC_DOWNLOAD_LINUX: ${{ vars.NEXT_PUBLIC_DOWNLOAD_LINUX }}
+      NEXT_PUBLIC_GITHUB_URL: ${{ vars.NEXT_PUBLIC_GITHUB_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
