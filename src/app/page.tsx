@@ -40,7 +40,10 @@ export default function Home() {
 
   useEffect(() => {
     const savedLang = localStorage.getItem("pyun_lang") as Lang | null;
-    const savedTheme = localStorage.getItem("pyun_theme") as "dark" | "light" | null;
+    const savedTheme = localStorage.getItem("pyun_theme") as
+      | "dark"
+      | "light"
+      | null;
     if (savedLang) setLang(savedLang);
     if (savedTheme) setTheme(savedTheme);
   }, []);
@@ -170,7 +173,6 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4 w-full lg:w-auto">
               <a
                 href={process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS || "#"}
-                target="_blank"
                 rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
                 className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
@@ -182,7 +184,6 @@ export default function Home() {
 
               <a
                 href={process.env.NEXT_PUBLIC_DOWNLOAD_MAC_SILICON || "#"}
-                target="_blank"
                 rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
                 className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
@@ -194,7 +195,6 @@ export default function Home() {
 
               <a
                 href={process.env.NEXT_PUBLIC_DOWNLOAD_MAC_INTEL || "#"}
-                target="_blank"
                 rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
                 className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
@@ -206,7 +206,6 @@ export default function Home() {
 
               <a
                 href={process.env.NEXT_PUBLIC_DOWNLOAD_LINUX || "#"}
-                target="_blank"
                 rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
                 className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
