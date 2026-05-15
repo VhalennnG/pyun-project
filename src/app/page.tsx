@@ -51,27 +51,13 @@ export default function Home() {
 
   const t = dict[lang];
 
-  const triggerDownload = async (
+  const triggerDownload = (
     e: React.MouseEvent<HTMLButtonElement>,
     url: string,
-    filename?: string,
   ) => {
     e.preventDefault();
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = blobUrl;
-      a.download = filename ?? "";
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(blobUrl);
-    } catch {
-      // fallback: buka di tab baru kalau fetch gagal
-      window.open(url, "_blank");
-    }
+    if (!url) return;
+    window.location.href = url;
   };
 
   return (
