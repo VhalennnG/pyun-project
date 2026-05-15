@@ -39,26 +39,29 @@ export default function Home() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
+    const savedLang = localStorage.getItem("pyun_lang") as Lang | null;
+    const savedTheme = localStorage.getItem("pyun_theme") as "dark" | "light" | null;
+    if (savedLang) setLang(savedLang);
+    if (savedTheme) setTheme(savedTheme);
+  }, []);
+
+  useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+    localStorage.setItem("pyun_theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem("pyun_lang", lang);
+  }, [lang]);
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
   const toggleLang = () => setLang(lang === "en" ? "id" : "en");
 
   const t = dict[lang];
-
-  const triggerDownload = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    url: string,
-  ) => {
-    e.preventDefault();
-    if (!url) return;
-    window.location.href = url;
-  };
 
   return (
     <div className="relative min-h-screen var(--color-text-primary) overflow-hidden font-sans selection:bg-accent-primary/30">
@@ -165,64 +168,52 @@ export default function Home() {
           >
             {/* Ubah container menjadi Grid dengan 2 kolom */}
             <div className="grid grid-cols-2 gap-4 w-full lg:w-auto">
-              <button
-                onClick={(e) =>
-                  triggerDownload(
-                    e,
-                    process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS || "",
-                  )
-                }
+              <a
+                href={process.env.NEXT_PUBLIC_DOWNLOAD_WINDOWS || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
-                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
+                className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-(--color-text-primary) text-(--color-bg-primary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-(--color-text-primary)/20 overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
                 <FaWindows className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadWin}</span>
-              </button>
+              </a>
 
-              <button
-                onClick={(e) =>
-                  triggerDownload(
-                    e,
-                    process.env.NEXT_PUBLIC_DOWNLOAD_MAC_SILICON || "",
-                  )
-                }
+              <a
+                href={process.env.NEXT_PUBLIC_DOWNLOAD_MAC_SILICON || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
-                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
+                className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <FaApple className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadMacSilicon}</span>
-              </button>
+              </a>
 
-              <button
-                onClick={(e) =>
-                  triggerDownload(
-                    e,
-                    process.env.NEXT_PUBLIC_DOWNLOAD_MAC_INTEL || "",
-                  )
-                }
+              <a
+                href={process.env.NEXT_PUBLIC_DOWNLOAD_MAC_INTEL || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
-                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
+                className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 bg-linear-to-tr from-accent-tertiary to-accent-primary text-white font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover-neon-glow neon-glow overflow-hidden tracking-tight text-sm"
               >
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <FaApple className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadMacIntel}</span>
-              </button>
+              </a>
 
-              <button
-                onClick={(e) =>
-                  triggerDownload(
-                    e,
-                    process.env.NEXT_PUBLIC_DOWNLOAD_LINUX || "",
-                  )
-                }
+              <a
+                href={process.env.NEXT_PUBLIC_DOWNLOAD_LINUX || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 // Ubah inline-flex menjadi flex w-full
-                className="group relative flex w-full items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
+                className="cursor-pointer group relative flex w-full items-center justify-center gap-2 px-6 py-3 glass-card hover:bg-(--color-bg-secondary) font-bold rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg overflow-hidden tracking-tight text-sm text-(--color-text-primary) border border-(--color-border)"
               >
                 <FaLinux className="w-5 h-5 relative z-10 shrink-0" />
                 <span className="relative z-10">{t.downloadLin}</span>
-              </button>
+              </a>
             </div>
 
             <div className="flex items-center justify-center lg:justify-start gap-3 mt-2">
