@@ -12,7 +12,7 @@ export const dict = {
     downloadMacSilicon: "Mac (Apple Silicon)",
     downloadMacIntel: "Mac (Intel)",
     downloadLin: "Linux",
-    versionInfo: "v1.0.1 · Free & Open Source",
+    versionInfo: "v1.0.0 · Free & Open Source",
 
     // ── How It Works ─────────────────────────────────────
     howItWorksSub: "Instant Workflow",
@@ -137,7 +137,7 @@ export const dict = {
     downloadMacSilicon: "Mac (Apple Silicon)",
     downloadMacIntel: "Mac (Intel)",
     downloadLin: "Linux",
-    versionInfo: "v1.0.1 · Free & Open Source",
+    versionInfo: "v1.0.0 · Free & Open Source",
 
     // ── How It Works ─────────────────────────────────────
     howItWorksSub: "Literally Cuma 3 Langkah",
